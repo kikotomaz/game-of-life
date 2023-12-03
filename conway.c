@@ -11,6 +11,9 @@
 #include <SDL2/SDL.h>
 #include <time.h>
 
+#define ALIVE 1
+#define DEAD 0
+
 static const int HEIGHT = 112;
 static const int WIDTH = 184;
 static const int SCALE = 8;
@@ -96,22 +99,22 @@ void Draw(SDL_Renderer* renderer, const int* world)
 int EvaluateState(const int self, const int neighbors)
 {
 
-    if(self == 1)
+    if(self == ALIVE)
     {
         if(neighbors == 2 || neighbors == 3)
         {
-            return 1;
+            return ALIVE;
         }
     }
     else
     {
         if(neighbors == 3)
         {
-            return 1;
+            return ALIVE;
         }
     }
 
-    return 0;
+    return DEAD;
 }
 
 void Tick(int** world)
